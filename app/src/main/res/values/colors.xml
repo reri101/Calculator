@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#C1C1C1</color>
+    <color name="equals">#BF1E8A00</color>
+    <color name="equalsIntense">#27B800</color>
+    <color name="clear">#830000</color>
+    <color name="clearIntense">#CA0000</color>
+    <color name="darkBlue">#003555</color>
+    <color name="lighterDarkBlue">#005161</color>
+    <color name="lighterDarkBlueIntense">#008AA5</color>
+</resources>
