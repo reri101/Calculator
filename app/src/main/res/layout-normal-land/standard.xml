@@ -12,13 +12,11 @@
         android:id="@+id/calculationsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFF00"
         android:textColor="@color/white"
         android:textSize="24sp"
-        android:backgroundTint="#00FFFF00"
         app:layout_constraintBottom_toTopOf="@+id/displayEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/displayEditText"
@@ -358,6 +356,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/operations_button_background"
+            android:onClick="changeSymbolBTNPush"
             android:text="@string/changeSymbolText"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guideline4"

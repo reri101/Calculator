@@ -13,11 +13,11 @@
         android:id="@+id/calculationsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/displayEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/displayEditText"

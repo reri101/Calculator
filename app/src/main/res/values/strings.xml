@@ -45,5 +45,5 @@
 
     <string name="calculator">Calculator</string>
     <string name="author">Mikołaj Zwoliński</string>
-    <string name="description">Aplikacja "Kalkulator" to narzędzie edukacyjne, które pomoże Ci w nauce wykonywania obliczeń matematycznych. Posiada dwa tryby: prosty i zaawansowany, aby dopasować się do Twoich potrzeb.</string>
+    <string name="description">Aplikacja "Kalkulator" to narzędzie edukacyjne, które pomoże Ci w wykonywaniu obliczeń matematycznych. Posiada dwa tryby: prosty i zaawansowany, aby dopasować się do Twoich potrzeb.</string>
 </resources>

@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/titleEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/calculator"
         android:importantForAutofill="no"
@@ -23,7 +23,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="40sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toTopOf="@+id/authorEditText"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
@@ -32,7 +32,7 @@
         android:id="@+id/descritpionEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="@string/description"
         android:importantForAutofill="no"
@@ -42,7 +42,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="18sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
     <EditText
         android:id="@+id/authorEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/author"
         android:importantForAutofill="no"
@@ -61,9 +61,9 @@
         android:textAlignment="center"
         android:textColor="@color/grey"
         android:textColorHint="@color/white"
-        android:textSize="21sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/descritpionEditText"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

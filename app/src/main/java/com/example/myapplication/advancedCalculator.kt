@@ -39,7 +39,7 @@ class advancedCalculator : AppCompatActivity() {
 
 
     private fun isOperator(char: String): Boolean {
-        val operators = listOf(".","+", "-", "*", "/", "(", ")", "sin(", "cos(", "tan(", "ln(", "log(", "sqrt(", "%", "^(2)", "^(")
+        val operators = listOf("*(-1)",".","+", "-", "*", "/", "(", ")", "sin(", "cos(", "tan(", "ln(", "log(", "sqrt(", "%", "^(2)", "^(")
         return operators.contains(char)
     }
 
@@ -55,7 +55,7 @@ class advancedCalculator : AppCompatActivity() {
         val rightStr = oldText.substring(cursorPos)
 
         if (oldText.isEmpty()) {
-            if(strToAdd.equals("-") || !isOperatorSmallerGroup(strToAdd)){
+            if(strToAdd.equals("-") || (!isOperatorSmallerGroup(strToAdd) && !strToAdd.equals("*(-1)"))){
                 display.setText("$leftStr$strToAdd$rightStr")
                 display.setSelection(cursorPos + strToAdd.length)
             }else
@@ -75,7 +75,7 @@ class advancedCalculator : AppCompatActivity() {
                         display.setText("$leftStr$strToAdd$rightStr")
                         display.setSelection(cursorPos + strToAdd.length)
                     }else{
-                        if(!isOperatorSmallerGroup(strToAdd)){
+                        if(!isOperatorSmallerGroup(strToAdd) && !strToAdd.equals("*(-1)")){
                             display.setText("$leftStr$strToAdd$rightStr")
                             display.setSelection(cursorPos + strToAdd.length)
                         }
@@ -193,6 +193,7 @@ class advancedCalculator : AppCompatActivity() {
 
 
     fun changeSymbolBTNPush(view: View) {
+        updateText("*(-1)")
     }
 
     fun clearBTNPush(view: View) {
@@ -222,7 +223,7 @@ class advancedCalculator : AppCompatActivity() {
             display.setText("")
         }
         else{
-            val formattedResult = String.format("%.2f", result.toDouble())
+            val formattedResult = String.format("%.3f", result.toDouble())
             display.setText(formattedResult)
             display.setSelection(formattedResult.length)
             display2.setText(formattedResult)

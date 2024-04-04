@@ -32,7 +32,6 @@ class standardCalculator : AppCompatActivity() {
         }
 
         displayEditText = findViewById(R.id.displayEditText)
-        adjustTextSize()
         previousCalculation = findViewById(R.id.calculationsView)
         display = findViewById(R.id.displayEditText)
         display2 = findViewById(R.id.calculationsView)
@@ -40,16 +39,9 @@ class standardCalculator : AppCompatActivity() {
         display.setShowSoftInputOnFocus(false)
     }
 
-    private fun adjustTextSize() {
-        val displayMetrics = resources.displayMetrics
-        val textSize = displayMetrics.widthPixels / 20f
-        println(textSize)
-        if(textSize>300)
-            displayEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
-    }
 
     private fun isOperator(char: String): Boolean {
-        val operators = listOf(".","+", "-", "*", "/", "(", ")", "sin(", "cos(", "tan(", "ln(", "log(", "sqrt(", "%", "^(2)", "^(")
+        val operators = listOf("*(-1)",".","+", "-", "*", "/", "(", ")", "sin(", "cos(", "tan(", "ln(", "log(", "sqrt(", "%", "^(2)", "^(")
         return operators.contains(char)
     }
 
@@ -65,7 +57,7 @@ class standardCalculator : AppCompatActivity() {
         val rightStr = oldText.substring(cursorPos)
 
         if (oldText.isEmpty()) {
-            if(strToAdd.equals("-") || !isOperatorSmallerGroup(strToAdd)){
+            if(strToAdd.equals("-") || (!isOperatorSmallerGroup(strToAdd) && !strToAdd.equals("*(-1)"))){
                 display.setText("$leftStr$strToAdd$rightStr")
                 display.setSelection(cursorPos + strToAdd.length)
             }else
@@ -85,7 +77,7 @@ class standardCalculator : AppCompatActivity() {
                         display.setText("$leftStr$strToAdd$rightStr")
                         display.setSelection(cursorPos + strToAdd.length)
                     }else{
-                        if(!isOperatorSmallerGroup(strToAdd)){
+                        if(!isOperatorSmallerGroup(strToAdd) && !strToAdd.equals("*(-1)")){
                             display.setText("$leftStr$strToAdd$rightStr")
                             display.setSelection(cursorPos + strToAdd.length)
                         }
@@ -159,7 +151,9 @@ class standardCalculator : AppCompatActivity() {
     }
 
     fun changeSymbolBTNPush(view: View) {
+        updateText("*(-1)")
     }
+
 
     fun clearBTNPush(view: View) {
         if(display.equals("")){
@@ -188,7 +182,7 @@ class standardCalculator : AppCompatActivity() {
             display.setText("")
         }
         else{
-            val formattedResult = String.format("%.2f", result.toDouble())
+            val formattedResult = String.format("%.3f", result.toDouble())
             display.setText(formattedResult)
             display.setSelection(formattedResult.length)
             display2.setText(formattedResult)
