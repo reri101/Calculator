@@ -50,6 +50,37 @@ class standardCalculator : AppCompatActivity() {
         return operators.contains(char)
     }
 
+    private fun findDot(number:String): Boolean{
+        return number.contains(".");
+    }
+
+    private fun getLastNumber(): String {
+        val text = display.text.toString()
+        var number = ""
+        var foundDot = false
+
+        for (i in text.length - 1 downTo 0) {
+            val char = text[i]
+
+            if (char.isDigit()) {
+                number = char + number
+            }
+            else if (char == '.' && !foundDot) {
+                number = char + number
+                foundDot = true
+            }
+            else if (isOperator(char.toString()) && number.isNotEmpty()) {
+                break
+            }
+            else if (isOperator(char.toString())) {
+                number = ""
+                break
+            }
+        }
+
+        return number
+    }
+
     private fun updateText(strToAdd: String) {
         val oldText = display.getText().toString();
         val cursorPos = display.selectionStart
@@ -70,8 +101,20 @@ class standardCalculator : AppCompatActivity() {
             }else{
                 val lastChar = oldText[oldText.length - 1]
                 if(!isOperator(lastChar.toString())){
-                    display.setText("$leftStr$strToAdd$rightStr")
-                    display.setSelection(cursorPos + strToAdd.length)
+                    if(strToAdd.equals(".")){
+                        val numb = getLastNumber()
+                        if(findDot(numb)){
+                            Snackbar.make(findViewById(android.R.id.content), "Niepoprawne użycie operatorów", Snackbar.LENGTH_LONG).show()
+                        }
+                        else{
+                            display.setText("$leftStr$strToAdd$rightStr")
+                            display.setSelection(cursorPos + strToAdd.length)
+                        }
+                    }
+                    else {
+                        display.setText("$leftStr$strToAdd$rightStr")
+                        display.setSelection(cursorPos + strToAdd.length)
+                    }
                 }else{
                     if(!isOperatorSmallerGroup(lastChar.toString())){
                         display.setText("$leftStr$strToAdd$rightStr")
@@ -143,7 +186,6 @@ class standardCalculator : AppCompatActivity() {
 
     fun divideBTNPush(view: View) {
         updateText(getString(R.string.divideText))
-
     }
 
     fun multiplyBTNPush(view: View) {
@@ -155,13 +197,22 @@ class standardCalculator : AppCompatActivity() {
     }
 
 
+    private var lastClearTime: Long = 0
     fun clearBTNPush(view: View) {
-        if(display.equals("")){
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastClearTime < 700) {
             display.setText("")
-            display2.setText("")
+        } else {
+            val currentText = display.text.toString()
+
+            if (currentText.isNotEmpty()) {
+                val newText = currentText.substring(0, currentText.length - 1)
+                display.setText(newText)
+            }
         }
-        else
-            display.setText("");
+
+        lastClearTime = currentTime
     }
 
     fun clearAllBTNPush(view: View) {
@@ -178,8 +229,6 @@ class standardCalculator : AppCompatActivity() {
         if(result.equals("NaN")){
 //            Toast.makeText(this, "Nieprawidłowa formułą!", Toast.LENGTH_SHORT).show();
             Snackbar.make(findViewById(android.R.id.content), "Wystąpił błąd w składni", Snackbar.LENGTH_LONG).show();
-
-            display.setText("")
         }
         else{
             val formattedResult = String.format("%.3f", result.toDouble())
